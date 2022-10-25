@@ -8,7 +8,11 @@
 // 0 geeft false
 // 300 geeft true
 
+function biggerThenZero(number) {
+    return number > 0;
+}
 
+console.log(biggerThenZero(3));
 
 /* Opdracht 2 */
 // Schrijf een functie die twee getallen verwacht en teruggeeft of ze, opgetelt, gróter zijn dan 100.
@@ -17,7 +21,11 @@
 // 8 en 92 geeft false
 // 89 en 14 geeft true
 
+function biggerThenHundred(number1, number2) {
+    return (number1 + number2) > 100;
+}
 
+console.log(biggerThenHundred(89, 14));
 
 /* Opdracht 3 */
 // Schrijf een functie die een zin verwacht en de eerste letter uit de zin omzet naar een hoofdletter.
@@ -25,7 +33,11 @@
 // "de kat krabt de krullen van de trap" geeft "De kat krabt de krullen van de trap"
 // "programmeren is super leuk!" geeft "Programmeren is super leuk!"
 
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
+console.log(capitalize("de kat krabt de krullen van de trap"));
 
 /* Opdracht 4 */
 // Schrijf een functie die een argument verwacht en het datatype teruggeeft (boolean, object, undefined, number, string,function)
@@ -35,7 +47,11 @@
 // "Hallo" geeft string
 // [1, 2, 3] geeft object (ja echt!)
 
+function datatype(input) {
+    return typeof input;
+}
 
+console.log(datatype([1, 2, 3]));
 
 /* Opdracht 5 */
 // Schrijf een functie die een array van strings verwacht. Hoe lang die array is weet je niet van tevoren - het zouden zomaar 100 entries kunnen zijn.
@@ -44,7 +60,16 @@
 // ["abra", "cadabra"] geeft "abracadabra"
 // ["a", "b", "c", "d", "e"] geeft "abcde"
 
+let totalString = "";
 
+function makeString(string) {
+    for (let i = 0; i < string.length; i++) {
+        totalString = totalString + string[i];
+    }
+    return totalString;
+}
+
+console.log(makeString(["abra", "cadabra"]));
 
 /* Opdracht 6 */
 // Schrijf een functie die een zin verwacht en het langste woord uit die zin teruggeeft. Als er meerdere woorden het langst zijn, wordt het laatste langste woord terug gegeven.
@@ -53,6 +78,22 @@
 // "De eindopdracht telt voor 30 ECTS" geeft "eindopdracht"
 // "Een API staat voor Application Programming Interface. Met deze technologie zul je vaak gaan werken." geeft "technologie"
 
+function longestWord(string) {
+    let value = "";
+    let temp = "";
+    let temp2 = [];
+    string = string.split(" ");
+    for (let i = 0; i < string.length; i++) {
+        temp = string[i].split("");
+        temp2 = value.split("");
+        if (temp.length >= temp2.length) {
+            value = string[i];
+        }
+    }
+    return value;
+}
+
+console.log(longestWord("Een API staat voor Application Programming Interface. Met deze technologie zul je vaak gaan werken."));
 
 // -------------------------------  LEVEL 2
 
@@ -63,7 +104,33 @@
 // "koekje" geeft "ejkeok"
 // "vrienden" geeft "nedneirv"
 
+function reverseString(string) {
+    return string.split("").reverse().join("");
+}
 
+console.log(reverseString("koekje"));
+
+function reverseString2(string) {
+    let newString = "";
+    for (let i = string.length - 1; i >= 0; i--) {
+        newString += string[i];
+    }
+    return newString;
+}
+
+console.log(reverseString2("koekje"));
+
+function reverseString3(string) {
+    if (string === "") {
+        return "";
+    } else {
+        return reverseString3(string.substring(1)) + string.charAt(0);
+    }
+
+    // return (string === "") ? "" : reverseString3(string.substring(1)) + string.charAt(0);
+}
+
+console.log(reverseString3("koekje"));
 
 // 6b. Schrijf een functie die een woord verwacht checkt of dit woord een palindroom is. Een palindroom is een
 // spiegelwoord: het is hetzelfde zowel vooruit als achterstevoren. Als dit zo is, geeft de functie true terug,
@@ -73,7 +140,13 @@
 // "madam" geeft true
 // "vrienden" geeft false
 
+function isPalindroom(string) {
+    let newString = string.split("").reverse().join("");
 
+    return (newString === string);
+}
+
+console.log(isPalindroom("lepel"));
 
 /* Opdracht 7 */
 // Schrijf een functie die een string en een letter verwacht. De functie telt hoe vaak die letter voorkomt in
@@ -82,7 +155,19 @@
 // "Hans en marietje lopen naar de supermarkt" en "e" geeft 6
 // "Hans is zijn mondkapje vergeten" en "a" geeft 2
 
+function letterCount(string, letter) {
+    let count = 0;
+    const stringArray = string.split("");
 
+    for (let i = 0; i < stringArray.length; i++) {
+        if (stringArray[i] === letter) {
+            count += 1;
+        }
+    }
+    return count;
+}
+
+console.log(letterCount("Hans en marietje lopen naar de supermarkt", "e"));
 
 /* Opdracht 8 */
 // Schrijf een functie die bij iedere aanroep een random string id genereert van 8 tekens. Er mag gebruik gemaakt worden van de volgende karakters:
@@ -91,7 +176,19 @@
 // iizdX7Ax
 // gajxBhGs
 
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+const charactersArray = characters.split("");
 
+function randomString(charactersArray) {
+    let newString = "";
+    for (let i = 0; i < 8; i++) {
+        newString = newString + charactersArray[Math.round(Math.random() * 62)];
+    }
+
+    return newString;
+}
+
+console.log(randomString(charactersArray));
 
 // ------------------------------- LEVEL 3 (optionele bonusopdrachten)
 
