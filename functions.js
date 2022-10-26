@@ -199,7 +199,16 @@ console.log(randomString(charactersArray));
 // lastEntry([3, 6, 9, 17, 4, 6, 25, 8]) geeft 8
 // lastEntry([46, 65, 34, 204, 190, 89], 3) geeft [204, 190, 89]
 
+function lastEntry(array, n) {
+    if (n) {
+        return array.splice(-n, array.length - n);
+    } else {
+        return array[array.length - 1];
+    }
+}
 
+console.log(lastEntry([3, 6, 9, 17, 4, 6, 25, 8]));
+console.log(lastEntry([46, 65, 34, 204, 190, 89], 3));
 
 /* Opdracht 10 */
 // Schrijf een functie die geen parameters verwacht en de getallen 1 tot 100 print.
@@ -239,7 +248,21 @@ console.log(randomString(charactersArray));
 // FizzBuzz
 // etc.
 
+function fizzbuzz() {
+    for (let i = 0; i < 100; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            console.log("FizzBuzz");
+        } else if (i % 3 === 0) {
+            console.log("Fizz");
+        } else if (i % 5 === 0) {
+            console.log("Buzz");
+        } else {
+            console.log(i);
+        }
+    }
+}
 
+fizzbuzz();
 
 /* Opdracht 11 */
 // Schrijf een functie die een array van strings verwacht en een gezamelijke groet teruggeeft, ongeacht hoeveel items er in de array staan.
@@ -248,3 +271,15 @@ console.log(randomString(charactersArray));
 // ["Piet", "Henk"] geeft "Hoi Piet en Henk!"
 // ["A", "B", "C", "D", "E", "F"] geeft "Hoi A, B, C, D, E en F!"
 
+function greetings(array) {
+    let output = "Hoi ";
+    for (let i = 0; i < array.length - 1; i++) {
+        output = output.concat(array[i], ", ");
+    }
+    output = output.slice(0, output.length - 2);
+    output = output.concat(" en ", array[array.length - 1], "!");
+    return output;
+}
+
+console.log(greetings(["Nick", "Nova", "Mitchel", "Arjen"]));
+console.log(greetings(["Piet", "Henk"]));
